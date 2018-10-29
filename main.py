@@ -1,14 +1,20 @@
 # Importem les llibreries
 from PIL import Image
-from os import path as math
-import math as path
+from os import path
 
-# Creem fitxer de sortida i hi posem les comandes basiques
-out = open("jaloiun.lgo","a")
+# Creem fitxer de sortida, amb el nom introduit per a l'usuari, i hi posem les comandes basiques
+name = raw_input("Si et plau, introduiex el nom del fitxer de sortida (Es desar"+chr(133)+" a la carpeta de \"Codes\"): ").encode("cp1252")
+while len(name) < 1 or "/" in name or "\\" in name or "|" in name or "*" in name or ":" in name or "<" in name or ">" in name or "\"" in name or "?" in name:
+	name = raw_input("El nom intrudu"+chr(139)+"t no "+chr(130)+"s v"+chr(133)+"lid. Torna-ho a intentar: ").encode("cp1252")
+if path.exists(name+".lgo"):
+	out = open("jaloiun.lgo")
+else:
+	out = open("jaloiun.lgo","a")
 out.write("rt 180 setpensize 1")
 
 # Importem la imatge
-fitxer = math.join('Images','jalouin.png')
+print "Seleccioni una imatge: (Les imatges han de ser png i est ubicades a la carpeta de \"Images\"")os.listdir(".png")
+fitxer = path.join('Images','jalouin.png')
 img = Image.open(fitxer)
 
 # Canviem la mida de la imatge a 400px
