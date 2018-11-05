@@ -1,19 +1,24 @@
 # Importem les llibreries
 from PIL import Image
-from os import path
+from os import path, listdir
 
 # Creem fitxer de sortida, amb el nom introduit per a l'usuari, i hi posem les comandes basiques
 name = raw_input("Si et plau, introduiex el nom del fitxer de sortida (Es desar"+chr(133)+" a la carpeta de \"Codes\"): ").encode("cp1252")
 while len(name) < 1 or "/" in name or "\\" in name or "|" in name or "*" in name or ":" in name or "<" in name or ">" in name or "\"" in name or "?" in name:
 	name = raw_input("El nom intrudu"+chr(139)+"t no "+chr(130)+"s v"+chr(133)+"lid. Torna-ho a intentar: ").encode("cp1252")
-if path.exists(name+".lgo"):
-	out = open("jaloiun.lgo")
-else:
-	out = open("jaloiun.lgo","a")
+out = open(name+".lgo","w" if path.exists(name+".lgo") else "a")
 out.write("rt 180 setpensize 1")
 
 # Importem la imatge
-print "Seleccioni una imatge: (Les imatges han de ser png i est ubicades a la carpeta de \"Images\"")os.listdir(".png")
+print "Seleccioni una imatge (Les imatges han de ser png i est ubicades a la carpeta de \"Images\"): \n"
+files = listdir("Images")
+for f in range(len(files)):
+	if files[f][-4:-1] = ".png":
+		print "\t" + chr(175) + " " + str(f) + " -> " + files[f]
+	else:
+		files.remove(files[f])
+source = raw_input("\nIntrodueix el nom de la imatge o el seu n"+chr(163)+"mero: ")
+if source in files:
 fitxer = path.join('Images','jalouin.png')
 img = Image.open(fitxer)
 
