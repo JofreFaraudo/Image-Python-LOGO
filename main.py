@@ -8,7 +8,7 @@ if not path.isdir('Codes'):
 	newdir("Codes")
 while len(name) < 1 or "/" in name or "\\" in name or "|" in name or "*" in name or ":" in name or "<" in name or ">" in name or "\"" in name or "?" in name:
 	name = raw_input("El nom intrudu"+chr(139)+"t no "+chr(130)+"s v"+chr(133)+"lid. Torna-ho a intentar: ").encode("cp1252")
-out = open(name+".lgo","w" if path.exists(name+".lgo") else "a")
+out = open(name+("" if name[-4:-1]+name[-1] == ".lgo" else ".lgo"),"w" if path.exists(name+".lgo") else "a")
 out.write("rt 180 setpensize 1")
 
 # Importem la imatge
@@ -27,11 +27,18 @@ if len(files)==0:
 	exit()
 source = raw_input("\nIntrodueix el nom, amb o sense extensi"+chr(162)+", de la imatge o el seu n"+chr(163)+"mero: ")
 try:
-	source = str(source)
+	source = int(source)
+	try:
+		source = files[source]
+	except:
+		print "El fitxer no existeix"
+		exit()
 except:
-	print "w"
-if ".png" not in source:
-	source += ".png"
+	if ".png" not in source:
+		source += ".png"
+if source not in files:
+	print "El fitxer no existeix"
+	exit()
 fitxer = path.join('Images',source)
 img = Image.open(fitxer)
 
