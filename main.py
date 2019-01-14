@@ -8,10 +8,12 @@ if not path.isdir('Codes'):
 	newdir("Codes")
 while len(name) < 1 or "/" in name or "\\" in name or "|" in name or "*" in name or ":" in name or "<" in name or ">" in name or "\"" in name or "?" in name:
 	name = raw_input("El nom intrudu"+chr(139)+"t no "+chr(130)+"s v"+chr(133)+"lid. Torna-ho a intentar: ").encode("cp1252")
-out = open(name+("" if name[-4:-1]+name[-1] == ".lgo" else ".lgo"),"w" if path.exists(name+".lgo") else "a")
+out = open(path.join("Codes",name+("" if name[-4:-1]+name[-1] == ".lgo" else ".lgo")),"w" if path.exists(name+".lgo") else "a")
 out.write("rt 180 setpensize 1")
 
-# Importem la imatge
+# Importem la imatge, si no n'hi ha, reportem el problema
+if not path.isdir('Images'):
+	newdir("Images")
 print "Seleccioni una imatge (Les imatges han de ser png i est ubicades a la carpeta de \"Images\"): \n"
 files = listdir("Images")
 restador = 0
